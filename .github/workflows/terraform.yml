@@ -45,8 +45,19 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
-        working-directory: terraform
+        working-directory: infra
         run: terraform plan
+      - name: Terraform apply
+        working-directory: infra
+        run: terraform apply -auto-approve
+      - name: Wait for 1 Hour
+        run: | 
+          echo "Infrastructure will be destroyed after 1 hour."
+          echo "Waiting..." sleep 3600
+      - name: Terraform Destroy  
+        if: always()
+        run: terraform destroy -auto-approve
+        
 
       - name: Terraform Apply
         working-directory: terraform
