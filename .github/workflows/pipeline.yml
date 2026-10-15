@@ -11,6 +11,7 @@ permissions:
 
 jobs:
   aws-login:
+    name: GitHub-hosted runners
     runs-on: ubuntu-latest
 
     steps:
